@@ -16,27 +16,27 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    width: 100vw; /* Ambil seluruh lebar layar */
+    height: 100%; /* Ambil seluruh tinggi kontainer induk */
+    width: 100%; /* Ambil seluruh lebar kontainer induk */
     font-family: Arial, sans-serif;
     padding: 0; /* Hapus padding agar tidak ada jarak */
     margin: 0; /* Hapus margin agar tidak ada jarak */
-    box-sizing: border-box; /* Pastikan padding tidak menambah lebar total */
 }
 
 /* Menambahkan kelas lokal untuk selector h1 */
 .container h1 {
     font-size: 2rem;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 /* Kontainer untuk tombol-tombol */
 .button-container {
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Mengubah justify-content ke center untuk menempatkan tombol di tengah */
     align-items: center; /* Vertikal memusatkan tombol */
     width: 100%; /* Ambil seluruh lebar layar */
-    max-width: 1200px; /* Maksimum lebar kontainer */
+    max-width: 600px; /* Maksimum lebar kontainer */
     padding: 0 20px; /* Tambah padding agar tidak menempel di tepi layar */
     box-sizing: border-box; /* Pastikan padding tidak menambah lebar total */
 }
@@ -54,6 +54,8 @@
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     text-align: center; /* Pusatkan teks dalam tombol */
+    flex: 1; /* Agar tombol mengambil ruang yang tersedia */
+    max-width: 200px; /* Batasan maksimum lebar tombol */
 }
 
 .startButton:hover {
@@ -61,15 +63,4 @@
     border-color: #0056b3;
 }
 
-.startButton.center {
-    flex: 0 1 30%; /* Lebar fleksibel untuk tombol tengah */
-    max-width: 200px; /* Batasan maksimum lebar tombol */
-}
-
-.startButton.left {
-    margin-right: auto; /* Dorong ke kiri */
-}
-
-.startButton.right {
-    margin-left: auto; /* Dorong ke kanan */
-}
+/* Hapus kelas center, left, right jika tidak diperlukan */

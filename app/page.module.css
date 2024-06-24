@@ -1,4 +1,3 @@
-/* Root akan mengambil seluruh tinggi dan lebar viewport */
 .root {
     display: flex;
     justify-content: center;
