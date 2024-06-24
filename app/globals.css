@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --foreground-rgb :0, 0, 0;
+    --background-start-rgb : 214, 219, 220;
+    --background-start-rgb : 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+    --foreground-rgb :255, 255, 25;
+    --background-start-rgb : 0, 0, 0;
+    --background-start-rgb :0, 0, 0;
+    }
+}
+
+.halaman {
+    background: rgb(255, 255, 255);
+    background-size: cover;
+    width: 200%;
+    height: 200%;
+    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.5)
+}
