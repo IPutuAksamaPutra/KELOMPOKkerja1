@@ -1,0 +1,58 @@
+/* Root akan mengambil seluruh tinggi dan lebar viewport */
+.root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw; /* Ambil seluruh lebar viewport */
+    height: 100vh; /* Ambil seluruh tinggi viewport */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container utama */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* Mengatur dua kolom, logo di kanan, deskripsi di kiri */
+    gap: 20px; /* Jarak antar elemen */
+    width: 100%; /* Lebar container menggunakan 100% dari lebar viewport */
+    max-width: 1200px; /* Batasan maksimum lebar container */
+    height: 100%; /* Tinggi container menggunakan 100% dari tinggi viewport */
+    max-height: 800px; /* Batasan maksimum tinggi container */
+    padding: 40px;
+    box-sizing: border-box; /* Pastikan padding tidak menambah lebar total */
+    margin: auto; /* Pusatkan container di tengah */
+}
+
+/* Gaya untuk logo */
+.logo {
+    justify-self: end; /* Memposisikan logo ke kanan */
+    width: 100%; /* Sesuaikan dengan ukuran logo yang diinginkan */
+    max-width: 300px; /* Batasan maksimum lebar logo */
+    height: auto;
+}
+
+/* Gaya untuk deskripsi */
+.description {
+    font-family: Verdana, sans-serif;  
+    font-size: 20px;
+    grid-column: 1 / span 1; /* Mengatur posisi di kolom 1 */
+    grid-row: 1 / span 2; /* Menjangkau dua baris vertikal */
+    align-self: center; /* Memusatkan vertikal */
+}
+
+
+/* Gaya untuk tombol mulai */
+.startButton {
+    grid-column: 1 / -1; /* Menjangkau semua kolom */
+    grid-row: 3; /* Mengatur di baris terakhir */
+    justify-self: start; /* Memposisikan tombol mulai ke kiri */
+    align-self: center; /* Memusatkan vertikal */
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid blue; /* Border biru dengan ketebalan 2px */
+    border-radius: 5px; /* Sudut lengkung border */
+    text-decoration: none; /* Hapus underline default dari link */
+    color: blue; /* Warna teks menjadi biru */
+    cursor: pointer; /* Ubah cursor saat dihover */
+}
