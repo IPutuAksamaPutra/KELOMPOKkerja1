@@ -1,66 +1,62 @@
-/* styles.module.css */
-
-.root {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw; /* Ambil seluruh lebar viewport */
-    height: 100vh; /* Ambil seluruh tinggi viewport */
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%; /* Ambil seluruh tinggi kontainer induk */
-    width: 100%; /* Ambil seluruh lebar kontainer induk */
     font-family: Arial, sans-serif;
-    padding: 0; /* Hapus padding agar tidak ada jarak */
-    margin: 0; /* Hapus margin agar tidak ada jarak */
-}
-
-/* Menambahkan kelas lokal untuk selector h1 */
-.container h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    margin: 0;
+    padding: 20px; 
+    height: 100vh;
+    background-color: #f0f0f0;
     text-align: center;
 }
 
-/* Kontainer untuk tombol-tombol */
-.button-container {
-    display: flex;
-    justify-content: center; /* Mengubah justify-content ke center untuk menempatkan tombol di tengah */
-    align-items: center; /* Vertikal memusatkan tombol */
-    width: 100%; /* Ambil seluruh lebar layar */
-    max-width: 600px; /* Maksimum lebar kontainer */
-    padding: 0 20px; /* Tambah padding agar tidak menempel di tepi layar */
-    box-sizing: border-box; /* Pastikan padding tidak menambah lebar total */
+.logo {
+    width: 50px;
+    position: absolute; 
+    top: 20px; 
+    right: 20px; 
 }
 
-.startButton {
-    display: inline-block;
+.header {
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 24px;
+    color: #333;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.option {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center;
+    max-width: 300px; 
+    padding: 20px;
+}
+
+.option .image {
+    width: 100%; 
+    height: auto; 
+    max-width: 150px; 
+    max-height: 150px;
+    margin-bottom: 10px;
+}
+
+.option .btn {
+    background-color: #00aaff;
+    color: #fff;
+    border: none;
     padding: 10px 20px;
-    margin: 10px;
-    font-size: 1rem;
-    text-decoration: none;
-    background-color: #007bff;
-    color: #ffffff;
-    border: 2px solid #007bff;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    text-align: center; /* Pusatkan teks dalam tombol */
-    flex: 1; /* Agar tombol mengambil ruang yang tersedia */
-    max-width: 200px; /* Batasan maksimum lebar tombol */
+    font-size: 16px;
+    margin-top: 10px; 
 }
 
-.startButton:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+.option .btn:hover {
+    background-color: #0088cc;
 }
-
-/* Hapus kelas center, left, right jika tidak diperlukan */
