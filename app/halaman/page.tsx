@@ -11,11 +11,15 @@ const HomePage = () => {
             <div className={styles.options}>
                 <div className={styles.option}>
                     <img src="/CekTransaksi.png" alt="Cek Transaksi" />
+                    <a href="/cekTransaksi" className={styles.btn}>
                     <button className={styles.btn}>Ayo Cek transaksimu</button>
+                    </a>
                 </div>
                 <div className={styles.option}>
                     <img src="/Transaksi.png" alt="Masukan Transaksi" />
-                    <button className={styles.btn}>Ayo Masukan transaksimu</button>
+                    <a href="/transaksi" className={styles.btn}>
+                    <button className={styles.btn}>Ayo Cek transaksimu</button>
+                    </a>
                 </div>
             </div>
         </div>
