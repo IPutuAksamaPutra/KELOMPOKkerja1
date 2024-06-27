@@ -1,6 +1,7 @@
 import styles from './page.module.css';
 
-export default function Home() {
+const Home =() => 
+{
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
@@ -11,9 +12,10 @@ export default function Home() {
                     </a>
                 </div>
                 <div className={styles.logo}>
-                    <img src="/CATRAH.png" alt="Logo Catrah" />
+                    <img src="/grafis.png" alt="Logo 1" />
                 </div>
             </div>
         </div>
     );
 }
+export default Home;

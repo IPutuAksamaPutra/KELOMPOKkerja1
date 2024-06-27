@@ -1,13 +1,18 @@
-.wrapper {
+.wrapper 
+{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: linear-gradient(to bottom right, #007bff, #ffffff);
+    background-image: url('/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.container {
+.container 
+{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -16,11 +21,13 @@
     max-width: 1200px;
 }
 
-.content {
+.content
+{
     max-width: 80%;
 }
 
-.content p {
+.content p 
+{
     margin-bottom: 50px;
     font-size: 18px;
     color: #0d0d0d;
@@ -31,7 +38,8 @@
          1px  1px 0 #ffffff; 
 }
 
-.btn {
+.btn 
+{
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -44,19 +52,42 @@
    
 }
 
-.btn:hover {
+.btn:hover 
+{
     background-color: #0056b3;
 }
 
-.logo {
+.logo 
+{
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.logo img {
+.logo img 
+{
     width: 1000px; 
     height: auto;
 }
 
+.backButton 
+{
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid #0056b3; 
+    transition: background-color 0.3s, border-color 0.3s; 
+}
+
+.backButton:hover 
+{
+    background-color: #0056b3;
+    border-color: #003f7f;
+}
