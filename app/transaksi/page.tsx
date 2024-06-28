@@ -1,51 +1,46 @@
-// transaksi.js
-
-"use client";
-
+'use client';
 import React, { useState, FormEvent } from 'react';
-import { db, storage } from '../firebaseConfig'; // Import db and storage from firebaseConfig
-import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import Style from './transaksi.module.css';
+import { db, storage } from '../firebaseClient';
+import { collection, addDoc } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
-const Transaksi = () => {
+const Transaksi = () => 
+    {
     const [username, setUsername] = useState('');
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState('');
     const [image, setImage] = useState<File | null>(null);
+    const [error, setError] = useState<string>('');
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
         try {
-            // Add transaction data to Firestore
-            const docRef = await addDoc(collection(db, 'transactions'), {
-                username,
-                amount: parseFloat(amount),
-                date,
-                imageUrl: '' // Placeholder for image URL
-            });
-
-            // Upload image to Firebase Storage if there is an image selected
+            // ungah gambar//
+            let imageUrl = null;
             if (image) {
-                const imageRef = ref(storage, `images/${docRef.id}_${image.name}`);
-                await uploadBytes(imageRef, image);
-                const imageUrl = await getDownloadURL(imageRef);
-
-                // Update document with imageUrl
-                await updateDoc(doc(db, 'transactions', docRef.id), {
-                    imageUrl
-                });
+                const storageRef = ref(storage, `images/${image.name}`);
+                await uploadBytes(storageRef, image);
+                imageUrl = await getDownloadURL(storageRef);
             }
 
-            alert('Data saved successfully!');
-            // Reset form
+            await addDoc(collection(db, 'transactions'), {
+                username,
+                amount: parseFloat(amount),
+                date: new Date(date),
+                imageUrl
+            });
+
             setUsername('');
             setAmount('');
             setDate('');
             setImage(null);
+
+            console.log('Transaction added successfully!');
         } catch (error) {
-            console.error("Error adding document: ", error);
+            console.error('Error adding transaction: ', error);
+            setError('Terjadi kesalahan saat menambahkan transaksi. Mohon coba lagi.');
         }
     };
 
@@ -58,7 +53,7 @@ const Transaksi = () => {
     return (
         <div className={Style.container}>
             <h1 className={Style.heading}>Transaksi</h1>
-            <p className={Style.description}>Halaman untuk melakukan transaksi baru.</p>
+            <p className={Style.description}>Halaman ini memudahkan pengguna mencatat transaksi dengan cepat. Pengguna dapat mengisi nama, jumlah, tanggal, dan mengunggah bukti transaksi, sehingga catatan keuangan tetap terorganisir dan akurat.</p>
             <form onSubmit={handleSubmit} className={Style.form}>
                 <div className={Style.formGroup}>
                     <label htmlFor="username">Nama Anda:</label>
@@ -101,7 +96,12 @@ const Transaksi = () => {
                 </div>
                 <button type="submit" className={Style.submitButton}>Submit</button>
             </form>
-            <a href="/halaman" className={Style.backButton}>Back to Home</a>
+            {error && (
+                <div className={Style.error}>
+                    <p>{error}</p>
+                </div>
+            )}
+            <a href="/halaman" className={Style.backButton}>Kembali ke Halaman Utama</a>
         </div>
     );
 };

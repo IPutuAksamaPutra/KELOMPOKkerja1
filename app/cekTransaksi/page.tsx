@@ -1,47 +1,65 @@
-"use client";
+'use client';
 
 import React, { useState, FormEvent } from 'react';
 import Style from './cekTransaksi.module.css';
-
+import { db, collection, query, where, getDocs , storage} from '../firebaseClient'; 
+import { Timestamp } from 'firebase/firestore'; 
 type Transaction = 
 {
     username: string;
-    date: string;
+    date: Date;
     amount: number;
-    image: string;
+    imageUrl: string;
 };
 
 const CekTransaksi = () => 
-{
+    {
     const [username, setUsername] = useState('');
     const [date, setDate] = useState('');
     const [transaction, setTransaction] = useState<Transaction | null>(null);
+    const [error, setError] = useState<string>('');
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        
-        
-        const transactions: Transaction[] = [
-            { username: 'user1', date: '2024-06-25', amount: 100, image: 'https://via.placeholder.com/150' },
-            { username: 'user2', date: '2024-06-26', amount: 200, image: 'https://via.placeholder.com/150' },
-        ];
+        await fetchTransactions();
+    };
 
-       
-        const foundTransaction = transactions.find(
-            (trans) => trans.username === username && trans.date === date
-        );
-
-        if (foundTransaction) {
-            setTransaction(foundTransaction);
-        } else {
-            setTransaction(null);
-            alert('Transaksi tidak ditemukan untuk nama dan tanggal tersebut.');
+    const fetchTransactions = async () => {
+        try {
+            const transactionsCol = collection(db, 'transactions');
+            const q = query(transactionsCol, where('username', '==', username), where('date', '==', Timestamp.fromDate(new Date(date))));
+            const querySnapshot = await getDocs(q);
+    
+            if (!querySnapshot.empty) {
+                let foundTransaction: Transaction | null = null;
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    foundTransaction = 
+                    {
+                        username: data.username,
+                        date: data.date.toDate(),
+                        amount: data.amount,
+                        imageUrl: data.imageUrl || '' 
+                    };
+                });
+                setTransaction(foundTransaction);
+                setError('');
+            } else 
+            {
+                setTransaction(null);
+                setError('Transaksi tidak ditemukan untuk nama dan tanggal tersebut.');
+            }
+        } catch (error) {
+            console.error('Error fetching transactions:', error); 
+            setError('Terjadi kesalahan saat mengambil transaksi. Mohon coba lagi.');
         }
     };
+    
 
     return (
         <div className={Style.container}>
-            <h1>Cek Transaksi</h1>
+            <h1 className={Style.heading}>Cek Transaksi</h1>
+            <p className={Style.description}>Halaman ini dirancang untuk memudahkan pengguna dalam memantau transaksi dengan cepat dan efisien. Silakan masukkan Username dan Tanggal Transaksi yang ingin Anda periksa.</p>
             <form onSubmit={handleSubmit} className={Style.form}>
                 <div className={Style.formGroup}>
                     <label htmlFor="username">Username:</label>
@@ -70,12 +88,19 @@ const CekTransaksi = () =>
                 <div className={Style.result}>
                     <h2>Detail Transaksi</h2>
                     <p>Username: {transaction.username}</p>
-                    <p>Tanggal Transaksi: {transaction.date}</p>
+                    <p>Tanggal Transaksi: {transaction.date.toLocaleDateString()} {transaction.date.toLocaleTimeString()}</p>
                     <p>Jumlah Transaksi: {transaction.amount}</p>
-                    <img src={transaction.image} alt="Gambar Transaksi" />
+                    <img src={transaction.imageUrl} alt="Gambar Transaksi" />
                 </div>
             )}
-            <a href="/" className={Style.backButton}>Back to Home</a>
+
+            {error && (
+                <div className={Style.error}>
+                    <p>{error}</p>
+                </div>
+            )}
+
+            <a href="/halaman" className={Style.backButton}>Kembali ke Halaman Utama</a>
         </div>
     );
 };

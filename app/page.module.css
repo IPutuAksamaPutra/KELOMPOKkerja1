@@ -9,37 +9,36 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-}
-
-.container 
-{
+    text-align: center;
+  }
+  
+  .container 
+  {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
     width: 80%;
     max-width: 1200px;
-}
-
-.content
-{
+    position: relative;
+  }
+  
+  .content 
+  {
     max-width: 80%;
-}
-
-.content p 
-{
+    text-align: left; 
+  }
+  
+  .content p 
+  {
     margin-bottom: 50px;
     font-size: 18px;
     color: #0d0d0d;
-    text-shadow:
-        -1px -1px 0 #ffffff,  
-         1px -1px 0 #ffffff,
-        -1px  1px 0 #ffffff,
-         1px  1px 0 #ffffff; 
-}
-
-.btn 
-{
+    text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
+  }
+  
+  .btn 
+  {
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -49,30 +48,32 @@
     text-decoration: none;
     font-size: 16px;
     margin-top: 80px;
-   
-}
-
-.btn:hover 
-{
+  }
+  
+  .btn:hover 
+  {
     background-color: #0056b3;
-}
-
-.logo 
-{
+  }
+  
+  .logo 
+  {
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.logo img 
-{
-    width: 1000px; 
+    width: 100%;
+    max-width: 300px; 
+    margin-bottom: 20px;
+  }
+  
+  .logo img 
+  {
+    width: 100%; 
     height: auto;
-}
-
-.backButton 
-{
+  }
+  
+  .backButton 
+  {
     display: inline-block;
     margin-top: 20px;
     padding: 10px 20px;
@@ -82,12 +83,62 @@
     border-radius: 4px;
     text-align: center;
     cursor: pointer;
-    border: 2px solid #0056b3; 
-    transition: background-color 0.3s, border-color 0.3s; 
-}
-
-.backButton:hover 
-{
+    border: 2px solid #0056b3;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .backButton:hover 
+  {
     background-color: #0056b3;
     border-color: #003f7f;
-}
+  }
+  
+  /* sesuaikan layar pengguna */
+  @media (max-width: 768px) {
+    .container 
+    {
+      width: 90%;
+    }
+    .content 
+    {
+      max-width: 100%;
+    }
+    .btn 
+    {
+      width: 100%; 
+      margin-top: 20px;
+    }
+    .logo 
+    {
+      max-width: 80%;
+    }
+    .logo img 
+    {
+      width: 100%; 
+      height: auto;
+    }
+  }
+  
+  @media (max-width: 480px) 
+  {
+    .content p 
+    {
+      font-size: 16px;
+    }
+    .btn 
+    {
+      font-size: 14px; 
+      padding: 8px 16px;
+    }
+    .logo img 
+    {
+      width: 100%;
+      height: auto;
+    }
+    .backButton 
+    {
+      font-size: 14px; 
+      padding: 8px 16px; 
+    }
+  }
+  
