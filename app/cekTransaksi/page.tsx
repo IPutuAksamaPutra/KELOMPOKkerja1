@@ -2,18 +2,18 @@
 
 import React, { useState, FormEvent } from 'react';
 import Style from './cekTransaksi.module.css';
-import { db, collection, query, where, getDocs , storage} from '../firebaseClient'; 
+import { db, collection, query, where, getDocs } from '../firebaseClient'; 
 import { Timestamp } from 'firebase/firestore'; 
-type Transaction = 
-{
+
+type Transaction = {
     username: string;
     date: Date;
     amount: number;
     imageUrl: string;
+    description: string; 
 };
 
-const CekTransaksi = () => 
-    {
+const CekTransaksi = () => {
     const [username, setUsername] = useState('');
     const [date, setDate] = useState('');
     const [transaction, setTransaction] = useState<Transaction | null>(null);
@@ -34,22 +34,21 @@ const CekTransaksi = () =>
                 let foundTransaction: Transaction | null = null;
                 querySnapshot.forEach((doc) => {
                     const data = doc.data();
-                    foundTransaction = 
-                    {
+                    foundTransaction = {
                         username: data.username,
                         date: data.date.toDate(),
                         amount: data.amount,
-                        imageUrl: data.imageUrl || '' 
+                        imageUrl: data.imageUrl || '',
+                        description: data.description || '' // Mengambil description jika ada
                     };
                 });
                 setTransaction(foundTransaction);
                 setError('');
-            } else 
-            {
+            } else {
                 setTransaction(null);
                 setError('Transaksi tidak ditemukan untuk nama dan tanggal tersebut.');
             }
-        } catch (error) {
+        }catch (error) {
             console.error('Error fetching transactions:', error); 
             setError('Terjadi kesalahan saat mengambil transaksi. Mohon coba lagi.');
         }
@@ -89,7 +88,7 @@ const CekTransaksi = () =>
                     <h2>Detail Transaksi</h2>
                     <p>Username: {transaction.username}</p>
                     <p>Tanggal Transaksi: {transaction.date.toLocaleDateString()} {transaction.date.toLocaleTimeString()}</p>
-                    <p>Jumlah Transaksi: {transaction.amount}</p>
+                    <p>Jumlah Barang: {transaction.amount}</p>
                     <img src={transaction.imageUrl} alt="Gambar Transaksi" />
                 </div>
             )}

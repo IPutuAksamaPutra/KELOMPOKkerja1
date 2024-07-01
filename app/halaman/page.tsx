@@ -11,13 +11,13 @@ const HomePage = () =>
             </header>
             <div className={styles.options}>
                 <div className={styles.option}>
-                    <img src="/CekTransaksi.png" alt="Cek Transaksi" />
+                    <img src="/Transaksi.png" alt="Cek Transaksi" />
                     <a href="/cekTransaksi" className={styles.btn}>
                         <button className={styles.btn}>Ayo Cek transaksimu</button>
                     </a>
                 </div>
                 <div className={styles.option}>
-                    <img src="/Transaksi.png" alt="Masukan Transaksi" />
+                    <img src="/CekTransaksi.png" alt="Masukan Transaksi" />
                     <a href="/transaksi" className={styles.btn}>
                         <button className={styles.btn}>Masukan transaksimu</button>
                     </a>
