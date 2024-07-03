@@ -18,9 +18,9 @@ const Transaksi = () => {
         e.preventDefault();
 
         try {
-            // Unggah gambar
             let imageUrl = null;
-            if (image) {
+            if (image) 
+            {
                 const storageRef = ref(storage, `images/${image.name}`);
                 await uploadBytes(storageRef, image);
                 imageUrl = await getDownloadURL(storageRef);
@@ -43,7 +43,7 @@ const Transaksi = () => {
             setError('');
             setSuccess('Transaksi berhasil ditambahkan!');
 
-            console.log('Transaction added successfully!');
+            console.log('DATA TRANSAKSI BERHASIL DISIMPAN!');
         } catch (error) {
             console.error('Error adding transaction: ', error);
             setError('Terjadi kesalahan saat menambahkan transaksi. Mohon coba lagi.');
@@ -93,7 +93,7 @@ const Transaksi = () => {
                     />
                 </div>
                 <div className={Style.formGroup}>
-                    <label htmlFor="description">Keterangan:</label>
+                    <label htmlFor="description">Nama Barang:</label>
                     <input
                         type="text"
                         id="description"

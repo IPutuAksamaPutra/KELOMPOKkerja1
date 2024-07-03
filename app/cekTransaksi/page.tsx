@@ -39,7 +39,7 @@ const CekTransaksi = () => {
                         date: data.date.toDate(),
                         amount: data.amount,
                         imageUrl: data.imageUrl || '',
-                        description: data.description || '' // Mengambil description jika ada
+                        description: data.description || '' 
                     };
                 });
                 setTransaction(foundTransaction);

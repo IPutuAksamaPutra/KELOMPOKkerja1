@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './halaman.module.css';
 
-const HomePage = () => 
-{
+const HomePage = () => {
     return (
         <div className={styles.container}>
             <header className={styles.header}>
@@ -11,14 +10,14 @@ const HomePage = () =>
             </header>
             <div className={styles.options}>
                 <div className={styles.option}>
-                    <img src="/Transaksi.png" alt="Cek Transaksi" />
-                    <a href="/cekTransaksi" className={styles.btn}>
+                    <img src="/CekTransaksi.png" alt="Cek Transaksi" className={styles.image} />
+                    <a href="/cekTransaksi" className={styles.btnLink}>
                         <button className={styles.btn}>Ayo Cek transaksimu</button>
                     </a>
                 </div>
                 <div className={styles.option}>
-                    <img src="/CekTransaksi.png" alt="Masukan Transaksi" />
-                    <a href="/transaksi" className={styles.btn}>
+                    <img src="/Transaksi.png" alt="Masukan Transaksi" className={styles.image} />
+                    <a href="/transaksi" className={styles.btnLink}>
                         <button className={styles.btn}>Masukan transaksimu</button>
                     </a>
                 </div>
