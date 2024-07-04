@@ -71,7 +71,7 @@
 
 .formGroup input 
 {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -79,7 +79,7 @@
 
 .submitButton 
 {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     background-color: #007bff;
     border: none;
@@ -87,6 +87,7 @@
     border-radius: 4px;
     font-size: 1rem;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .submitButton:hover 
